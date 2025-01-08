@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dynamic Form with Next.js, TypeScript, React Hook Form, and Material UI
 
-## Getting Started
+This project demonstrates how to create a dynamic form in a Next.js application using TypeScript. The form fields are rendered dynamically based on JSON data, and the form provides validation, responsiveness, and various field types (e.g., TEXT, LIST, RADIO).
 
-First, run the development server:
+## Table of Contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+* [Customization](#customization)
+* [Running the Application](#running-the-application)
+* [Technologies Used](#technologies-used)
+
+## Installation
+
+### 1\. Clone the Repository
+
+Clone the project to your local machine using the following command:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository_url>
+cd dynamic-form
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run the following command to install the required dependencies:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+```
 
-## Learn More
+### 3. Required Dependencies
 
-To learn more about Next.js, take a look at the following resources:
+* react-hook-form: To manage form validation and submission.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* @mui/material: For Material UI components such as TextField, RadioGroup, etc.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Usage
 
-## Deploy on Vercel
+-----
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 1\. Create or Modify formData.json
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The form fields are rendered based on the content of the formData.json file located in the /public directory. Below is an example of the JSON structure:
+
+```{
+  "data": [
+    {
+      "id": 1,
+      "name": "Full Name",
+      "fieldType": "TEXT",
+      "minLength": 1,
+      "maxLength": 100,
+      "defaultValue": "John Doe",
+      "required": true
+    },
+    {
+      "id": 2,
+      "name": "Email",
+      "fieldType": "TEXT",
+      "minLength": 1,
+      "maxLength": 50,
+      "defaultValue": "hello@mail.com",
+      "required": true
+    },
+    {
+      "id": 6,
+      "name": "Gender",
+      "fieldType": "LIST",
+      "defaultValue": "1",
+      "required": true,
+      "listOfValues": ["Male", "Female", "Others"]
+    },
+    {
+      "id": 7,
+      "name": "Love React?",
+      "fieldType": "RADIO",
+      "defaultValue": "1",
+      "required": true,
+      "listOfValues": ["Yes", "No"]
+    }
+  ]
+}
+
+```
+
+## Customization
+
+-------------
+
+### 1\. Change Field Labels
+
+To change the label of any field, simply modify the name attribute in formData.json. For example, change "Full Name" to "Name".
+
+### 2\. Modify Field Types
+
+To switch from a dropdown to a radio button (or vice versa), modify the fieldType in the JSON file:
+
+* "fieldType": "RADIO" for radio buttons.
+
+* "fieldType": "LIST" for dropdown lists.
+
+### 3\. Add More Fields
+
+Add new fields by expanding the data array in formData.json.
+
+### 4\. Change Validation
+
+Modify the minLength, maxLength, and required attributes in the JSON file to customize form field validation.
+
+## Running the Application
+
+-----------------------
+
+1. ```npm run dev```
+
+2. Open your browser and go to <http://localhost:3000> to see the dynamic form in action.
+
+## Technologies Used
+
+-----------------
+
+* **Next.js**: A React framework for building static and server-rendered applications.
+
+* **TypeScript**: For static type checking.
+
+* **Material UI**: For UI components like TextField, RadioGroup, MenuItem, etc.
+
+* **React Hook Form**: To manage form validation and submission.
